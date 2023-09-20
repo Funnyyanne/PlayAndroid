@@ -2,7 +2,6 @@ package com.anne.play.logic.viewmodel
 
 import androidx.paging.PagingData
 import com.anne.play.logic.model.ArticleModel
-import retrofit2.http.Query
 import kotlinx.coroutines.flow.Flow
 
 abstract class BaseArticlePagingRepository {
@@ -11,7 +10,6 @@ abstract class BaseArticlePagingRepository {
     }
 
     abstract fun getPagingData(query: Query): Flow<PagingData<ArticleModel>>
-
 }
 
 //data class 查询类
