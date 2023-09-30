@@ -4,4 +4,8 @@
     <string name="project">Project</string>
     <string name="mine">Mine</string>
     <string name="official_account">Official</string>
+    <string name="bad_network_view_tip">Your network is not to force, can tap the screen to reload</string>
+    <string name="load_failed_click_to_reload">Failed to load, click to reload</string>
+    <string name="failed_load_data">Failed to load data</string>
+    <string name="no_network">The current network is unavailable</string>
 </resources>

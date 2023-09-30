@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_network">当前网络不可用</string>
+    <string name="bad_network_view_tip">您的网络不给力，点击屏幕可重新加载</string>
+    <string name="load_failed_click_to_reload">加载失败，点击可重新加载</string>
+    <string name="failed_load_data">加载数据失败</string>
+    <string name="app_name">玩安卓</string>
+    <string name="home_page">主页</string>
+    <string name="project">项目</string>
+    <string name="mine">我的</string>
+    <string name="official_account">公众号</string>
+</resources>

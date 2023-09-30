@@ -24,5 +24,4 @@ abstract class BasePagingSource : PagingSource<Int, ArticleModel>() {
     }
 
     abstract suspend fun getArticleList(page: Int): List<ArticleModel>
-
 }

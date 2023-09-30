@@ -10,8 +10,8 @@ sealed class PlayState<out R> {
     fun isSuccessful() = this is PlaySuccess
     override fun toString(): String {
         return when (this) {
-            is PlaySuccess<*> ->"Success[data=$data]"
-            is PlayError -> "Error[exception=${error}]"
+            is PlaySuccess<*> -> "Success[data=$data]"
+            is PlayError -> "Error[exception=$error]"
             PlayLoading -> "Loading"
         }
     }

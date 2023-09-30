@@ -12,6 +12,5 @@ abstract class BaseArticlePagingRepository {
     abstract fun getPagingData(query: Query): Flow<PagingData<ArticleModel>>
 }
 
-//data class 查询类
+// data class 查询类
 data class Query(val cid: Int = -1, val k: String = "")
-

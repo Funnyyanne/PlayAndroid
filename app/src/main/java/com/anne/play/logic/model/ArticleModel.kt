@@ -1,8 +1,5 @@
 package com.anne.play.logic.model
 
-
-
-
 data class ArticleModel(
     val uid: Int = 0,
     val apkLink: String = "",

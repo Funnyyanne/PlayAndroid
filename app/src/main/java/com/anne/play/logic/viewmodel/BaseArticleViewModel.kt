@@ -28,11 +28,10 @@ abstract class BaseArticleViewModel(application: Application) : AndroidViewModel
     }.cachedIn(viewModelScope)
 
     private var searchJob: Job? = null
-    open fun searchArticle(query:Query) {
+    open fun searchArticle(query: Query) {
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             searchResults.emit(query)
         }
     }
-
 }

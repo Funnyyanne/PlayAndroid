@@ -11,6 +11,7 @@ import androidx.navigation.navArgument
 import androidx.paging.ExperimentalPagingApi
 import com.anne.play.logic.model.ArticleModel
 import com.anne.play.ui.main.PlayDestonations.ARTICLE_ROUTE_URL
+import com.anne.play.ui.page.home.HomePage
 import com.google.gson.Gson
 import java.net.URLEncoder
 
@@ -48,7 +49,8 @@ fun NavGraph(startDestination: String = PlayDestonations.HOME_PAGE_ROUTE) {
     NavHost(navController = navController, startDestination = startDestination) {
         composable(PlayDestonations.HOME_PAGE_ROUTE) {
             //默认跳转主页
-            //MainPage(actions)
+            MainPage(actions)
+//            HomePage(actions = actions)
         }
         composable(
             "${PlayDestonations.ARTICLE_ROUTE}/{$ARTICLE_ROUTE_URL}", arguments = listOf(
@@ -60,7 +62,7 @@ fun NavGraph(startDestination: String = PlayDestonations.HOME_PAGE_ROUTE) {
             val parcelable = arguments.getString(ARTICLE_ROUTE_URL)
             //序列化参数 传给文章详情页
             val fromJson = Gson().fromJson(parcelable, ArticleModel::class.java)
-            //ArticlePage(article=fromJson,onBack=article.upPress)
+//            ArticlePage(article=fromJson,onBack=article.upPress)
         }
     }
 }

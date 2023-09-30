@@ -6,5 +6,5 @@ package com.anne.play.logic.viewmodel
  * Time:2023/9/12
  */
 interface ArticleListInterface {
-    val repositoryArticle :BaseArticlePagingRepository
+    val repositoryArticle: BaseArticlePagingRepository
 }

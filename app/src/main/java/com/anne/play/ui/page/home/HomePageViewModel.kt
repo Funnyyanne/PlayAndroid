@@ -17,8 +17,7 @@ import kotlinx.coroutines.launch
  * Time:2023/9/19
  */
 class HomePageViewModel(
-    application: Application
-
+    application: Application,
 ) : BaseArticleViewModel(application) {
     override val repositoryArticle: BaseArticlePagingRepository
         get() = HomeArticlePagingRepository()
