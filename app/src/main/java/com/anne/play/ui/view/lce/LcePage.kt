@@ -2,6 +2,7 @@ package com.anne.play.ui.view.lce
 
 import androidx.compose.runtime.Composable
 import com.anne.play.logic.model.*
+
 /**
  *
  * Author:AnneLo
@@ -11,8 +12,8 @@ import com.anne.play.logic.model.*
 @Composable
 fun <T> LcePage(
     playState: PlayState<T>,
-    content: @Composable (data: T) -> Unit,
     onErrorClick: () -> Unit,
+    content: @Composable (data: T) -> Unit,
 ) {
     when (playState) {
         is PlayState.PlayLoading -> {

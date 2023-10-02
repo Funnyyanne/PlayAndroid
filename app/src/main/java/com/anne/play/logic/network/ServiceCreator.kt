@@ -16,5 +16,9 @@ object ServiceCreator {
             addConverterFactory(GsonConverterFactory.create())
         }.build()
     }
+
+    /**
+     * get ServiceApi
+     */
     fun <T> create(service: Class<T>): T = create().create(service)
 }

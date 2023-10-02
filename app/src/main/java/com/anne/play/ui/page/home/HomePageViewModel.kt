@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.anne.play.logic.model.PlayState
 import com.anne.play.logic.viewmodel.BaseArticlePagingRepository
 import com.anne.play.logic.viewmodel.BaseArticleViewModel
 import com.anne.play.logic.viewmodel.Query
@@ -23,9 +24,9 @@ class HomePageViewModel(
         get() = HomeArticlePagingRepository()
 
     private var bannerJob: Job? = null
-    private val _bannerState = MutableLiveData<PlayState>()
+    private val _bannerState = MutableLiveData<PlayState<Any?>>()
 
-    val bannerState: LiveData<PlayState>
+    val bannerState: LiveData<PlayState<Any?>>
         get() = _bannerState
 
     fun getData() {

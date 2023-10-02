@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.anne.play.logic.base.paging.HomePagingSource
+import com.anne.play.logic.model.PlayState
 import com.anne.play.logic.network.PlayAndroidNetwork
 import com.anne.play.logic.viewmodel.BaseArticlePagingRepository
 import java.lang.RuntimeException
@@ -19,22 +20,18 @@ class HomeArticlePagingRepository : BaseArticlePagingRepository() {
             HomePagingSource()
         }.flow
 
-    suspend fun getBanner(state: MutableLiveData<PlayState>) {
-        state.postValue(PlayLoading)
+    suspend fun getBanner(state: MutableLiveData<PlayState<Any?>>) {
+        state.postValue(PlayState.PlayLoading)
         val bannerResponse = PlayAndroidNetwork.getBanner()
         if (bannerResponse.errorCode == 0) {
             val bannerList = bannerResponse.data
             bannerList.forEach {
                 it.data = it.imagePath
             }
-            state.postValue(PlaySuccess(bannerList))
+            state.postValue(PlayState.PlaySuccess(bannerList))
         } else {
-            state.postValue(PlayError(RuntimeException("response status is ${bannerResponse.errorCode} msg is ${bannerResponse.errorMsg}")))
+            state.postValue(PlayState.PlayError(RuntimeException("response status is ${bannerResponse.errorCode} msg is ${bannerResponse.errorMsg}")))
         }
     }
 }
 
-sealed class PlayState
-object PlayLoading : PlayState()
-data class PlaySuccess<T>(val data: T) : PlayState()
-data class PlayError<T>(val data: T) : PlayState()
