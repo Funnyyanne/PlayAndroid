@@ -1,6 +1,7 @@
 package com.anne.play.logic.network
 
 import com.anne.play.logic.network.service.HomePageService
+import com.anne.play.logic.network.service.LoginService
 import com.anne.play.logic.network.service.OfficialService
 import com.anne.play.logic.network.service.ProjectService
 
@@ -20,6 +21,14 @@ object PlayAndroidNetwork {
     suspend fun getProject(page: Int, cid: Int) = projectService.getProject(page, cid)
     private val officialService = ServiceCreator.create(OfficialService::class.java)
     suspend fun getWxArticleTree() = officialService.getWxArticleTree()
-
     suspend fun getWxArticle(page: Int, cid: Int) = officialService.getWxArticle(page, cid)
+
+    private val loginService = ServiceCreator.create(LoginService::class.java)
+    suspend fun getLogin(username: String, password: String) =
+        loginService.getLogin(username, password)
+
+    suspend fun getRegister(username: String, password: String, repassword: String) =
+        loginService.getRegister(username, password, repassword)
+
+    suspend fun getLogout() = loginService.getLogout()
 }
