@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android") version "2.48" apply false
-
+    id("com.diffplug.spotless") version "6.2.1"
 }
 
 android {
@@ -27,7 +27,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -50,9 +50,14 @@ android {
         }
     }
 }
+spotless {
+    java {
+        googleJavaFormat()
+    }
+}
 
 dependencies {
-    implementation ("androidx.appcompat:appcompat:1.3.0")
+    implementation("androidx.appcompat:appcompat:1.3.0")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.activity:activity-compose:1.7.0")
@@ -61,7 +66,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics:1.0.0")
     implementation("androidx.compose.ui:ui-tooling-preview:1.0.0")
     implementation("androidx.compose.material3:material3")
-    implementation ("com.google.android.material:material:1.4.0")
+    implementation("com.google.android.material:material:1.4.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -72,12 +77,12 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation("androidx.compose.runtime:runtime-livedata:1.5.1")
 
-    //material
+    // material
     implementation("androidx.compose.material:material:1.5.1")
 
-    //navigation
+    // navigation
     implementation("androidx.navigation:navigation-compose:2.7.1")
-    //photo library
+    // photo library
     // https://mvnrepository.com/artifact/dev.chrisbanes.accompanist/accompanist-coil
 //    runtimeOnly("dev.chrisbanes.accompanist:accompanist-coil:0.6.2")
     // https://mvnrepository.com/artifact/io.coil-kt/coil
@@ -85,20 +90,17 @@ dependencies {
 
     implementation("dev.chrisbanes.accompanist:accompanist-coil:0.6.2")
     implementation("dev.chrisbanes.accompanist:accompanist-insets:0.6.2")
-    //network
+    // network
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    //Paging loading
+    // Paging loading
 //    implementation("androidx.paging:paging-compose:3.2.0")
     implementation("androidx.paging:paging-compose:3.3.0-alpha02")
 
-    //DataStore
+    // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
-    //Compose banner 滚动
+    // Compose banner 滚动
     implementation("com.github.zhujiang521:Banner:1.3.6")
 //    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation("com.google.accompanist:accompanist-coil:0.10.0")
-
-
-
 }
