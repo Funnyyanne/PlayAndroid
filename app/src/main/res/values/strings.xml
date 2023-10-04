@@ -9,4 +9,11 @@
     <string name="failed_load_data">Failed to load data</string>
     <string name="no_network">The current network is unavailable</string>
     <string name="share_article">Share Article</string>
+    <string name="login_success">login success\n</string>
+    <string name="register_success">register success\n\n</string>
+    <string name="no_login">no login\n</string>
+    <string name="click_login">Click to login\n</string>
+    <string name="my_blog">my blog\n</string>
+    <string name="my_nuggets">Nuggets\n</string>
+    <string name="my_github">my github\n\n</string>
 </resources>

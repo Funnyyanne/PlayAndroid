@@ -10,5 +10,12 @@
     <string name="mine">我的</string>
     <string name="official_account">公众号</string>
     <string name="share_article">分享文章</string>
+    <string name="login_success">登录成功</string>
+    <string name="register_success">注册成功</string>
+    <string name="no_login">未登录</string>
+    <string name="click_login">请点击进行登录</string>
+    <string name="my_blog">我的博客</string>
+    <string name="my_nuggets">掘金</string>
+    <string name="my_github">Github</string>
 
 </resources>
