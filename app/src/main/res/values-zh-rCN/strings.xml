@@ -17,5 +17,8 @@
     <string name="my_blog">我的博客</string>
     <string name="my_nuggets">掘金</string>
     <string name="my_github">Github</string>
-
+    <string name="feature_not_available">功能不可用</string>
+    <string name="close">关闭</string>
+    <string name="sign_in">登录</string>
+    <string name="email">邮件</string>
 </resources>

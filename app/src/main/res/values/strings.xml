@@ -16,4 +16,8 @@
     <string name="my_blog">my blog\n</string>
     <string name="my_nuggets">Nuggets\n</string>
     <string name="my_github">my github\n\n</string>
+    <string name="feature_not_available">Feature not available\n\n</string>
+    <string name="close">Close\n</string>
+    <string name="sign_in">Sign in\n</string>
+    <string name="email">email\n\n</string>
 </resources>
