@@ -4,10 +4,10 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.anne.play.logic.base.repository.BaseArticlePagingRepository
+import com.anne.play.logic.base.viewmodel.BaseArticleViewModel
 import com.anne.play.logic.model.PlayState
-import com.anne.play.logic.viewmodel.BaseArticlePagingRepository
-import com.anne.play.logic.viewmodel.BaseArticleViewModel
-import com.anne.play.logic.viewmodel.Query
+import com.anne.play.logic.model.Query
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
