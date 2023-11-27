@@ -1,6 +1,7 @@
 package com.anne.play.ui.main
 
 import android.content.res.Configuration
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
@@ -8,19 +9,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -51,14 +47,20 @@ fun MainPage(
     onPositionChanged: (CourseTabs) -> Unit,
 ) {
     val tabs = CourseTabs.values()
-//    val viewModel: HomeViewModel = hiltViewModel()
 
-    Scaffold(Modifier.background(MaterialTheme.colorScheme.primary), bottomBar = {
+    Scaffold(backgroundColor = MaterialTheme.colors.primary, bottomBar = {
         BottomNavigation {
             tabs.forEach { tab ->
                 BottomNavigationItem(
-                    modifier = Modifier.background(MaterialTheme.colorScheme.primary),
-                    icon = { Icon(painterResource(id = tab.ordinal), contentDescription = null) },
+                    modifier = Modifier.background(MaterialTheme.colors.primary),
+                    icon = {
+                        val painter: Painter = if (tab == position) {
+                            painterResource(tab.selectIcon)
+                        } else {
+                            painterResource(tab.icon)
+                        }
+                        Icon(painter, contentDescription = null)
+                    },
                     selected = tab == position,
                     onClick = { onPositionChanged(tab) },
                     alwaysShowLabel = true,
@@ -133,10 +135,30 @@ fun MainPage(
     }
 }
 
-enum class CourseTabs(@StringRes val title: Int, val icon: ImageVector) {
+enum class CourseTabs(
+    @StringRes val title: Int,
+    @DrawableRes val icon: Int,
+    @DrawableRes val selectIcon: Int,
+) {
 
-    HOME_PAGE(R.string.home_page, Icons.Default.Home),
-    PROJECT(R.string.project, Icons.Filled.Info),
-    OFFICIAL_ACCOUNT(R.string.official_account, Icons.Filled.DateRange),
-    MINE(R.string.mine, Icons.Default.AccountCircle),
+    HOME_PAGE(
+        R.string.home_page,
+        R.drawable.ic_nav_news_normal,
+        R.drawable.ic_nav_news_actived,
+    ),
+    PROJECT(
+        R.string.project,
+        R.drawable.ic_nav_tweet_normal,
+        R.drawable.ic_nav_tweet_actived,
+    ),
+    OFFICIAL_ACCOUNT(
+        R.string.official_account,
+        R.drawable.ic_nav_discover_normal,
+        R.drawable.ic_nav_discover_actived,
+    ),
+    MINE(
+        R.string.mine,
+        R.drawable.ic_nav_my_normal,
+        R.drawable.ic_nav_my_pressed,
+    ),
 }
