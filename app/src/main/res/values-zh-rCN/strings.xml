@@ -21,4 +21,9 @@
     <string name="close">关闭</string>
     <string name="sign_in">登录</string>
     <string name="email">邮件</string>
+    <string name="hide_password">隐藏密码</string>
+    <string name="show_password">显示密码</string>
+    <string name="password">密码</string>
+    <string name="forgot_password">忘记密码</string>
+    <string name="dismiss">关闭</string>
 </resources>

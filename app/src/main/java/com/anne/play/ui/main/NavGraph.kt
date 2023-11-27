@@ -1,7 +1,10 @@
 package com.anne.play.ui.main
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -12,8 +15,10 @@ import androidx.paging.ExperimentalPagingApi
 import com.anne.play.R
 import com.anne.play.logic.model.ArticleModel
 import com.anne.play.logic.utils.getHtmlText
-import com.anne.play.ui.main.PlayDestonations.ARTICLE_ROUTE_URL
+import com.anne.play.ui.main.PlayDestinations.ARTICLE_ROUTE_URL
 import com.anne.play.ui.page.article.ArticlePage
+import com.anne.play.ui.page.login.LoginPage
+import com.anne.play.ui.page.login.LoginViewModel
 import com.google.gson.Gson
 import java.net.URLEncoder
 
@@ -22,7 +27,7 @@ import java.net.URLEncoder
  * Author:AnneLo
  * Time:2023/9/6
  */
-object PlayDestonations {
+object PlayDestinations {
     const val HOME_PAGE_ROUTE = "home_page_route"
     const val ARTICLE_ROUTE = "article_route"
     const val ARTICLE_ROUTE_URL = "article_route_url"
@@ -35,10 +40,10 @@ class PlayActions(nav: NavHostController) {
         article.title = getHtmlText(article.title)
         val gson = Gson().toJson(article).trim()
         val result = URLEncoder.encode(gson, "utf-8")
-        nav.navigate("${PlayDestonations.ARTICLE_ROUTE}/$result")
+        toAnimView(navController = nav, "${PlayDestinations.ARTICLE_ROUTE}/$result")
     }
     val toLogin: () -> Unit = {
-        toAnimView(navController = nav, PlayDestonations.LOGIN_ROUTE)
+        toAnimView(navController = nav, PlayDestinations.LOGIN_ROUTE)
     }
 
     val upPress: () -> Unit = {
@@ -59,19 +64,33 @@ class PlayActions(nav: NavHostController) {
 
 @ExperimentalPagingApi
 @Composable
-fun NavGraph(startDestination: String = PlayDestonations.HOME_PAGE_ROUTE) {
+fun NavGraph(startDestination: String = PlayDestinations.HOME_PAGE_ROUTE) {
     val navController = rememberNavController() // 获取NavController
     val actions = remember(navController) {
         PlayActions(navController)
     }
     NavHost(navController = navController, startDestination = startDestination) {
-        composable(PlayDestonations.HOME_PAGE_ROUTE) {
+        composable(PlayDestinations.HOME_PAGE_ROUTE) {
             // 默认跳转主页
-            MainPage(actions)
-//            HomePage(actions = actions)
+            val viewModel: HomeViewModel = viewModel()
+            val position by viewModel.position.observeAsState()
+            MainPage(actions, position) { tab ->
+                viewModel.onPositionChanged(tab)
+            }
+        }
+        composable(PlayDestinations.LOGIN_ROUTE) {
+            val viewModel: LoginViewModel = viewModel()
+            val loginState by viewModel.state.observeAsState()
+            LoginPage(
+                actions,
+                loginState,
+                { viewModel.logout() },
+            ) {
+                viewModel.toLoginOrRegister(it)
+            }
         }
         composable(
-            "${PlayDestonations.ARTICLE_ROUTE}/{$ARTICLE_ROUTE_URL}",
+            "${PlayDestinations.ARTICLE_ROUTE}/{$ARTICLE_ROUTE_URL}",
             arguments = listOf(
                 navArgument(ARTICLE_ROUTE_URL) {
                     type = NavType.StringType

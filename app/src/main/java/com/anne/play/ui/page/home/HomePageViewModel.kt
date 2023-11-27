@@ -34,7 +34,7 @@ class HomePageViewModel(
         searchArticle(Query())
     }
 
-    private fun getBanner() {
+    fun getBanner() {
         bannerJob?.cancel()
         bannerJob = viewModelScope.launch(Dispatchers.IO) {
             (repositoryArticle as HomeArticlePagingRepository).getBanner(_bannerState)

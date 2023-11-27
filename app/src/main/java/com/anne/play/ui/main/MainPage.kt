@@ -16,7 +16,6 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -24,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.ExperimentalPagingApi
@@ -33,12 +31,12 @@ import com.anne.play.R
 import com.anne.play.logic.model.PlayState
 import com.anne.play.ui.page.article.OfficialAccountPage
 import com.anne.play.ui.page.home.HomePage
+import com.anne.play.ui.page.home.HomePageViewModel
 import com.anne.play.ui.page.login.LoginViewModel
 import com.anne.play.ui.page.login.LogoutDefault
 import com.anne.play.ui.page.mine.ProfilePage
 import com.anne.play.ui.page.project.ArticleListPage
 import com.anne.play.ui.page.project.ProjectViewModel
-import java.util.Locale
 
 /**
  *
@@ -50,13 +48,13 @@ import java.util.Locale
 @Composable
 fun MainPage(
     actions: PlayActions,
-    viewModel: HomeViewModel = viewModel(),
+    position: CourseTabs?,
+    onPositionChanged: (CourseTabs) -> Unit,
 ) {
     val navController = rememberNavController()
     val tabs = CourseTabs.values()
 //    val viewModel: HomeViewModel = hiltViewModel()
 
-    val position by viewModel.position.observeAsState()
     Scaffold(Modifier.background(MaterialTheme.colorScheme.primary), bottomBar = {
         BottomNavigation {
             tabs.forEach { tab ->
@@ -64,8 +62,8 @@ fun MainPage(
                     modifier = Modifier.background(MaterialTheme.colorScheme.primary),
                     icon = { Icon(painterResource(id = tab.ordinal), contentDescription = null) },
                     selected = tab == position,
-                    onClick = { viewModel.onPositionChanged(tab) },
-                    label = { Text(text = stringResource(id = tab.title).uppercase(Locale.ROOT)) },
+                    onClick = { onPositionChanged(tab) },
+                    alwaysShowLabel = true,
                 )
             }
         }
@@ -75,7 +73,19 @@ fun MainPage(
 
         Crossfade(targetState = position, label = "") { screen ->
             when (screen) {
-                CourseTabs.HOME_PAGE -> HomePage(actions, modifier)
+                CourseTabs.HOME_PAGE -> {
+                    val viewModel: HomePageViewModel = viewModel()
+                    val bannerData by viewModel.bannerState.observeAsState(PlayState.PlayLoading)
+                    val lazyPagingItems = viewModel.articleResult.collectAsLazyPagingItems()
+                    HomePage(modifier, isLand, bannerData, lazyPagingItems, {
+                        if (bannerData !is PlayState.PlaySuccess<*>) {
+                            viewModel.getBanner()
+                        }
+                        if (lazyPagingItems.itemCount <= 0) {
+                        }
+                    }) { actions.enterArticle(it) }
+                }
+
                 CourseTabs.PROJECT -> {
                     val projectViewModel = viewModel<ProjectViewModel>()
                     val lazyPagingItem = projectViewModel.articleResult.collectAsLazyPagingItems()

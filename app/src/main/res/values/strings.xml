@@ -20,4 +20,9 @@
     <string name="close">Close\n</string>
     <string name="sign_in">Sign in\n</string>
     <string name="email">email\n\n</string>
+    <string name="hide_password">Hide password\n</string>
+    <string name="show_password">Show password\n</string>
+    <string name="password">password</string>
+    <string name="forgot_password">forgot password</string>
+    <string name="dismiss">DISMISS\n</string>
 </resources>
