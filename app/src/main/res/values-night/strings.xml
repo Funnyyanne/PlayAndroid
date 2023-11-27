@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_success">login success\n</string>
+    <string name="password">password</string>
+    <string name="forgot_password">forgot password</string>
+</resources>
