@@ -15,7 +15,7 @@ import androidx.paging.compose.LazyPagingItems
 import com.anne.play.logic.model.ArticleModel
 import com.anne.play.logic.model.ClassifyModel
 import com.anne.play.logic.model.PlayState
-import com.anne.play.logic.viewmodel.Query
+import com.anne.play.logic.model.Query
 import com.anne.play.ui.page.article.list.ArticleListPaging
 import com.anne.play.ui.view.ArticleTabRow
 import com.anne.play.ui.view.lce.LcePage

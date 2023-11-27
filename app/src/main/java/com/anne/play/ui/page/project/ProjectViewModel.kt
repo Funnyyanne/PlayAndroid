@@ -1,9 +1,8 @@
 package com.anne.play.ui.page.project
 
 import android.app.Application
-import com.anne.play.logic.repository.ProjectRepository
-import com.anne.play.logic.viewmodel.BaseArticlePagingRepository
-import com.anne.play.logic.viewmodel.BaseViewModel
+import com.anne.play.logic.base.repository.BaseArticlePagingRepository
+import com.anne.play.logic.base.viewmodel.BaseViewModel
 
 /**
  *
