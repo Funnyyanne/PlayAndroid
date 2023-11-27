@@ -24,12 +24,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.compose.rememberNavController
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.anne.play.R
 import com.anne.play.logic.model.PlayState
-import com.anne.play.ui.page.article.OfficialAccountPage
 import com.anne.play.ui.page.home.HomePage
 import com.anne.play.ui.page.home.HomePageViewModel
 import com.anne.play.ui.page.login.LoginViewModel
@@ -51,7 +49,6 @@ fun MainPage(
     position: CourseTabs?,
     onPositionChanged: (CourseTabs) -> Unit,
 ) {
-    val navController = rememberNavController()
     val tabs = CourseTabs.values()
 //    val viewModel: HomeViewModel = hiltViewModel()
 
@@ -82,11 +79,12 @@ fun MainPage(
                             viewModel.getBanner()
                         }
                         if (lazyPagingItems.itemCount <= 0) {
+                            viewModel.getHomeArticle()
                         }
                     }) { actions.enterArticle(it) }
                 }
 
-                CourseTabs.PROJECT -> {
+                CourseTabs.PROJECT, CourseTabs.OFFICIAL_ACCOUNT -> {
                     val projectViewModel = viewModel<ProjectViewModel>()
                     val lazyPagingItem = projectViewModel.articleResult.collectAsLazyPagingItems()
                     val tree by projectViewModel.treeLiveData.observeAsState(PlayState.PlayLoading)
@@ -110,7 +108,6 @@ fun MainPage(
                     }
                 }
 
-                CourseTabs.OFFICIAL_ACCOUNT -> OfficialAccountPage(actions.enterArticle, modifier)
                 CourseTabs.MINE -> {
                     val viewModel: LoginViewModel = viewModel()
                     val logoutState by viewModel.logoutState.observeAsState(LogoutDefault)

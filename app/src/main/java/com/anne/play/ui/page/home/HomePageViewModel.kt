@@ -29,8 +29,7 @@ class HomePageViewModel(
     val bannerState: LiveData<PlayState<Any?>>
         get() = _bannerState
 
-    fun getData() {
-        getBanner()
+    fun getHomeArticle() {
         searchArticle(Query())
     }
 
