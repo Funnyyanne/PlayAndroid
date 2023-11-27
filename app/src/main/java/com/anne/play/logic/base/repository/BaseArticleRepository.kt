@@ -1,4 +1,4 @@
-package com.anne.play.logic.repository
+package com.anne.play.logic.base.repository
 
 import android.accounts.NetworkErrorException
 import android.app.Application
@@ -9,7 +9,6 @@ import com.anne.play.logic.model.ClassifyModel
 import com.anne.play.logic.model.PlayState
 import com.anne.play.logic.utils.NetworkUtil
 import com.anne.play.logic.utils.showToast
-import com.anne.play.logic.viewmodel.BaseArticlePagingRepository
 
 /**
  *
