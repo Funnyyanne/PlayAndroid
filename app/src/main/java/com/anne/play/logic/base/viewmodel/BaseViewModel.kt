@@ -1,4 +1,4 @@
-package com.anne.play.logic.viewmodel
+package com.anne.play.logic.base.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.LiveData

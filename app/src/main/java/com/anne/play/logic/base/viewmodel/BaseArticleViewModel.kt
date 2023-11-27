@@ -1,11 +1,13 @@
-package com.anne.play.logic.viewmodel
+package com.anne.play.logic.base.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.anne.play.logic.base.repository.BaseArticlePagingRepository
 import com.anne.play.logic.model.ArticleModel
+import com.anne.play.logic.model.Query
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
