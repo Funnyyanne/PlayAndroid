@@ -1,4 +1,4 @@
-package com.anne.play.logic.model
+package com.anne.play.logic.model // ktlint-disable filename
 
 data class ClassifyModel(
     val uid: Int,
@@ -8,5 +8,5 @@ data class ClassifyModel(
     val order: Int,
     val parentChapterId: Int,
     val userControlSetTop: Boolean,
-    val visible: Int
+    val visible: Int,
 )
