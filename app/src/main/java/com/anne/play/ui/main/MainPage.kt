@@ -33,6 +33,7 @@ import com.anne.play.ui.page.home.HomePageViewModel
 import com.anne.play.ui.page.login.LoginViewModel
 import com.anne.play.ui.page.login.LogoutDefault
 import com.anne.play.ui.page.mine.ProfilePage
+import com.anne.play.ui.page.offical.OfficialViewModel
 import com.anne.play.ui.page.project.ArticleListPage
 import com.anne.play.ui.page.project.ProjectViewModel
 
@@ -85,23 +86,27 @@ fun MainPage(
                 }
 
                 CourseTabs.PROJECT, CourseTabs.OFFICIAL_ACCOUNT -> {
-                    val projectViewModel = viewModel<ProjectViewModel>()
-                    val lazyPagingItem = projectViewModel.articleResult.collectAsLazyPagingItems()
-                    val tree by projectViewModel.treeLiveData.observeAsState(PlayState.PlayLoading)
-                    val treePosition by projectViewModel.position.observeAsState(0)
+                    val viewModel = if (screen == CourseTabs.PROJECT) {
+                        viewModel<ProjectViewModel>()
+                    } else {
+                        viewModel<OfficialViewModel>()
+                    }
+                    val lazyPagingItem = viewModel.articleResult.collectAsLazyPagingItems()
+                    val tree by viewModel.treeLiveData.observeAsState(PlayState.PlayLoading)
+                    val treePosition by viewModel.position.observeAsState(0)
                     ArticleListPage(
                         modifier,
                         tree,
                         treePosition,
                         lazyPagingItem,
                         {
-                            projectViewModel.getDataList()
+                            viewModel.getDataList()
                         },
                         {
-                            projectViewModel.searchArticle(it)
+                            viewModel.searchArticle(it)
                         },
                         {
-                            projectViewModel.onPositionChanged(it)
+                            viewModel.onPositionChanged(it)
                         },
                     ) {
                         actions.enterArticle(it)

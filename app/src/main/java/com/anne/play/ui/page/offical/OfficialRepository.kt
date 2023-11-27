@@ -4,11 +4,11 @@ import android.app.Application
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.anne.play.logic.base.paging.OfficialPagingSource
+import com.anne.play.logic.base.repository.BaseArticleRepository
 import com.anne.play.logic.model.BaseModel
 import com.anne.play.logic.model.ClassifyModel
+import com.anne.play.logic.model.Query
 import com.anne.play.logic.network.PlayAndroidNetwork
-import com.anne.play.logic.repository.BaseArticleRepository
-import com.anne.play.logic.viewmodel.Query
 
 /**
  *
