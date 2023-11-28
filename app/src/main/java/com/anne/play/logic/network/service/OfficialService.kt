@@ -14,7 +14,7 @@ import retrofit2.http.Path
 interface OfficialService {
 
     @GET("wxarticle/chapters/json")
-    fun getWxArticleTree(): BaseModel<List<ClassifyModel>>
+    suspend fun getWxArticleTree(): BaseModel<List<ClassifyModel>>
 
     @GET("wxarticle/list/{cid}/{page}/json")
     suspend fun getWxArticle(
