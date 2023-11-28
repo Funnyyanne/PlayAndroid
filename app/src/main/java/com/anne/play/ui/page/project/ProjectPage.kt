@@ -19,7 +19,7 @@ import com.anne.play.logic.model.Query
 import com.anne.play.ui.page.article.list.ArticleListPaging
 import com.anne.play.ui.view.ArticleTabRow
 import com.anne.play.ui.view.lce.LcePage
-import dev.chrisbanes.accompanist.insets.statusBarsHeight
+import com.google.accompanist.insets.statusBarsHeight
 
 @Composable
 fun ArticleListPage(
