@@ -20,6 +20,9 @@ sealed class PlayState<out R> {
     data class PlayError(val error: Throwable) : PlayState<Nothing>()
     object PlayLoading : PlayState<Nothing>()
 
+    /**
+     * [PlayState.data] if [Result] is of query [PlayState]
+     */
     fun <T> PlayState<T>?.successOr(fallback: T): T {
         if (this == null) return fallback
         return (this as? PlaySuccess<T>)?.data ?: fallback

@@ -11,7 +11,6 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -38,7 +37,6 @@ import com.anne.play.ui.page.project.ProjectViewModel
  * Author:AnneLo
  * Time:2023/9/6
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @ExperimentalPagingApi
 @Composable
 fun MainPage(
@@ -71,7 +69,7 @@ fun MainPage(
         val modifier = Modifier.padding(innerPadding)
         val isLand = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
 
-        Crossfade(targetState = position, label = "") { screen ->
+        Crossfade(targetState = position) { screen ->
             when (screen) {
                 CourseTabs.HOME_PAGE -> {
                     val viewModel: HomePageViewModel = viewModel()

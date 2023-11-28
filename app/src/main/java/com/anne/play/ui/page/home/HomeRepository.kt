@@ -5,6 +5,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.anne.play.logic.base.paging.HomePagingSource
 import com.anne.play.logic.base.repository.BaseArticlePagingRepository
+import com.anne.play.logic.model.BannerBean
 import com.anne.play.logic.model.PlayState
 import com.anne.play.logic.model.Query
 import com.anne.play.logic.network.PlayAndroidNetwork
@@ -17,7 +18,7 @@ import java.lang.RuntimeException
  */
 class HomeArticlePagingRepository : BaseArticlePagingRepository() {
 
-    suspend fun getBanner(state: MutableLiveData<PlayState<Any?>>) {
+    suspend fun getBanner(state: MutableLiveData<PlayState<List<BannerBean>>>) {
         state.postValue(PlayState.PlayLoading)
         val bannerResponse = PlayAndroidNetwork.getBanner()
         if (bannerResponse.errorCode == 0) {

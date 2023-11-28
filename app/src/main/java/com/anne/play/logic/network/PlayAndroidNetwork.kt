@@ -13,7 +13,6 @@ import com.anne.play.logic.network.service.ProjectService
 object PlayAndroidNetwork {
     private val homeService = ServiceCreator.create(HomePageService::class.java)
     suspend fun getBanner() = homeService.getBanner()
-    suspend fun getArticleList(page: Int) = homeService.getArticle(page)
     suspend fun getArticle(page: Int) = homeService.getArticle(page)
 
     private val projectService = ServiceCreator.create(ProjectService::class.java)

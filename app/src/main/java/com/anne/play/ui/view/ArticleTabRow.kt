@@ -2,9 +2,9 @@ package com.anne.play.ui.view
 
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Tab
-import androidx.compose.material3.ScrollableTabRow
-import androidx.compose.material3.Text
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -26,7 +26,7 @@ fun ArticleTabRow(
         selectedTabIndex = position ?: 0,
         modifier = Modifier.wrapContentWidth(),
         edgePadding = 3.dp,
-        containerColor = MaterialTheme.colors.primary,
+        backgroundColor = MaterialTheme.colors.primary,
     ) {
         data.forEachIndexed { index, projectClassify ->
             Tab(

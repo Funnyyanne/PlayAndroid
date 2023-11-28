@@ -32,7 +32,7 @@ import com.zj.banner.ui.indicator.NumberIndicator
 fun HomePage(
     modifier: Modifier = Modifier,
     isLand: Boolean = false,
-    bannerData: PlayState<Any?>,
+    bannerData: PlayState<List<BannerBean>>,
     lazyPagingItems: LazyPagingItems<ArticleModel>,
     loadData: () -> Unit,
     toArticleDetails: (ArticleModel) -> Unit,
@@ -47,7 +47,7 @@ fun HomePage(
     Column(modifier = modifier.fillMaxSize()) {
         PlayAppBar(title = stringResource(id = R.string.home_page), false)
         LcePage(
-            playState = bannerData as PlayState.PlayLoading,
+            playState = bannerData,
             onErrorClick = { loadData() },
         ) { data ->
             loadArticleState = true
@@ -94,9 +94,8 @@ fun HomeContent(
 
     ArticleListPaging(
         articleModifier,
-        listState = listState,
-        lazyPagingItems = lazyPagingItems,
+        listState,
+        lazyPagingItems,
         toArticleDetails,
-
     )
 }
